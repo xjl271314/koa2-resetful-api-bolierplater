@@ -5,23 +5,21 @@ import bodyParser from 'koa-bodyparser'
 import Router from 'koa-router'
 import koaLogger from 'koa-logger'
 import onError from 'koa-onerror'
-import koaJson from 'koa-json'
-import async from 'async';
+import cors from 'koa2-cors';
+import helmet from 'koa-helmet';
 
 class App {
   // 初始化
   static init() {
     App.app = new Koa()
-    onError(App.app)
-    App.initBodyParse();
-    App.nextInfo();
     App.initConfigs();
+    App.initBodyParse();
     App.initLoadRoutes();
   }
   // 使用bodyParse解析请求
   static initBodyParse() {
     App.app.use(bodyParser())
-    App.app.use(koaJson())
+    App.app.use(cors());
     App.app.use((ctx, next) => {
       ctx.body = '欢迎使用koa2后台模板'
       next()
@@ -47,14 +45,14 @@ class App {
   }
 
   static initConfigs() {
+    // 处理错误日志
+    onError(App.app);
+    // 安全处理
+    App.app.use(helmet());
     // 配置控制台日志中间件
     App.app.use(koaLogger((request) => {
       console.log(moment().format('YYYY-MM-DD HH:mm:SS'), request)
     }))
-  }
-
-  static nextInfo() {
-    
   }
 }
 

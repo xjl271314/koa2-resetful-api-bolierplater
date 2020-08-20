@@ -2,8 +2,8 @@
  * Module dependencies.
  */
 // ES6 支持
-require("@babel/polyfill");
 require("@babel/register");
+require("@babel/polyfill");
 // 配置alias支持
 require('module-alias/register')
 
