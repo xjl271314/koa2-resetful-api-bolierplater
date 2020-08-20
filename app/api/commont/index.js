@@ -1,4 +1,4 @@
-import controls from '@dao/commont'
+import controls from '@controllers/commont'
 import router from 'koa-router'
 const Router = new router({
   prefix:'/api/'

@@ -59,7 +59,7 @@
     "@root": ".",
     "@api": "./app/api",
     "@routes": "app/routes",
-    "@dao": "app/dao",
+    "@controllers": "app/controllers",
     "@models": "app/models",
     "@libs": "app/libs"
   }
